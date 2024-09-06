@@ -1,0 +1,50 @@
+# Diretórios
+venv/
+__pycache__/
+.vscode/
+.idea/
+
+# Arquivos de ambiente
+.env
+
+# Arquivos de log
+*.log
+
+# Arquivos de cache
+*.pyc
+*.pyo
+*.pyd
+
+# Arquivos de banco de dados
+*.db
+*.sqlite3
+
+# Arquivos temporários
+*.tmp
+*.bak
+*.swp
+
+# Arquivos de sistema
+.DS_Store
+Thumbs.db
+
+# Arquivos de configuração pessoal
+config/
+
+# Diretório de dados (se contiver dados sensíveis ou muito grandes)
+data/
+
+# Diretório de logs
+logs/
+
+# Arquivos de distribuição
+dist/
+build/
+*.egg-info/
+
+# Arquivos de cobertura de testes
+.coverage
+htmlcov/
+
+# Arquivos de documentação gerados automaticamente
+docs/_build/
