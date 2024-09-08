@@ -16,6 +16,7 @@ def clear_download_directory():
         shutil.rmtree(DOWNLOAD_DIR)
     os.makedirs(DOWNLOAD_DIR)
     logging.info(f"Pasta de download limpa: {DOWNLOAD_DIR}")
+    print(f"Pasta de download limpa: {DOWNLOAD_DIR}")
 
 def download_file(url, filename, folder):
     new_filename = f"{folder}_{filename}"
@@ -36,18 +37,22 @@ def download_file(url, filename, folder):
             progress_bar.update(size)
     
     logging.info(f"Arquivo baixado: {new_filename}")
+    print(f"Arquivo baixado: {new_filename}")
     return new_filename
 
 def upload_to_azure(local_file_path, blob_name):
     if not AZURE_CONNECTION_STRING:
         logging.error("AZURE_CONNECTION_STRING não está definida.")
+        print("Erro: AZURE_CONNECTION_STRING não está definida.")
         return False
     if not AZURE_CONTAINER_NAME:
         logging.error("AZURE_CONTAINER_NAME não está definido.")
+        print("Erro: AZURE_CONTAINER_NAME não está definido.")
         return False
 
     try:
         logging.info(f"Tentando fazer upload do arquivo: {blob_name}")
+        print(f"Iniciando upload do arquivo: {blob_name}")
         
         blob_service_client = BlobServiceClient.from_connection_string(AZURE_CONNECTION_STRING)
         container_client = blob_service_client.get_container_client(AZURE_CONTAINER_NAME)
@@ -56,21 +61,26 @@ def upload_to_azure(local_file_path, blob_name):
             container_client.upload_blob(name=blob_name, data=data, overwrite=True)
         
         logging.info(f"Arquivo enviado para o Azure: {blob_name}")
+        print(f"Arquivo enviado para o Azure: {blob_name}")
         return True
     except Exception as e:
         logging.error(f"Erro ao fazer upload do arquivo {blob_name}: {str(e)}")
         logging.error(f"Tipo de exceção: {type(e).__name__}")
+        print(f"Erro ao fazer upload do arquivo {blob_name}: {str(e)}")
         return False
 
 def remove_local_file(file_path):
     try:
         os.remove(file_path)
         logging.info(f"Arquivo local removido: {file_path}")
+        print(f"Arquivo local removido: {file_path}")
     except Exception as e:
         logging.error(f"Erro ao remover arquivo local {file_path}: {str(e)}")
+        print(f"Erro ao remover arquivo local {file_path}: {str(e)}")
 
 def download_and_upload_files(folder, files):
     logging.info(f"Iniciando processo para a pasta: {folder}")
+    print(f"Iniciando processo para a pasta: {folder}")
     clear_download_directory()
     
     urls = [f"{BASE_URL}{folder}/{file}" for file in files]
@@ -85,3 +95,4 @@ def download_and_upload_files(folder, files):
                 remove_local_file(local_file_path)
 
     logging.info("Download, upload e limpeza concluídos!")
+    print("Download, upload e limpeza concluídos!")
