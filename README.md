@@ -40,9 +40,9 @@ Este projeto baixa os dados abertos da Receita Federal do Brasil, que estão em 
 
 Execute o script principal:
 
-´´´
+```
 python main.py
-´´´
+```
 
 
 O script irá verificar se há novos dados disponíveis e baixá-los se necessário.
