@@ -56,6 +56,7 @@ Edite o arquivo `config/settings.py` para ajustar as configurações, como o nú
 Os logs do processo são salvos em `logs/cnpj_downloader.log`. Verifique este arquivo para obter informações detalhadas sobre cada execução.
 
 ## Estrutura do Projeto
+```
 projeto_cnpj/
 │
 ├── config/
@@ -69,7 +70,7 @@ projeto_cnpj/
 ├── main.py
 ├── requirements.txt
 └── README.md
-
+```
 ## Contribuição
 
 Contribuições são bem-vindas! Por favor, abra uma issue para discutir mudanças importantes antes de fazer um pull request.
